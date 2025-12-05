@@ -15,21 +15,17 @@ for line in raw_input:
 ranges = sorted(ranges, key = lambda x: x[0])
 print(ranges)
 while True:
-    new_ranges = []
     hits = 0
-    to_skip = []
     for i in range(len(ranges)):
-        if i in to_skip:
-            continue
-        if i != len(ranges) - 1 and ranges[i+1][0] < ranges[i][1]:
-            ranges[i][1] = max(ranges[i][1], ranges[i+1][1])
-            hits += 1
-            to_skip.append(i + 1)
-        new_ranges.append(ranges[i])
+        if i < len(ranges) - 1:
+            if ranges[i+1][0] < ranges[i][1]:
+                ranges[i][1] = max(ranges[i][1], ranges[i+1][1])
+                del ranges[i+1]
+                hits += 1
     if not hits:
         break
-    ranges = new_ranges
 print(ranges)
+
 total = 0
 
 for _range in ranges:
