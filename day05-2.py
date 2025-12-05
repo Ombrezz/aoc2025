@@ -1,5 +1,3 @@
-### UNSOLVED
-
 raw_input = []
 
 with open("day05-1.in") as f:
@@ -13,13 +11,11 @@ for line in raw_input:
         break
 
 ranges = sorted(ranges, key = lambda x: x[0])
-print(ranges)
 
 for i in range(len(ranges)):
-    while i < len(ranges) - 1 and ranges[i+1][0] < ranges[i][1]:
+    while i < len(ranges) - 1 and ranges[i+1][0] <= ranges[i][1]:
         ranges[i][1] = max(ranges[i][1], ranges[i+1][1])
         del ranges[i+1]
-print(ranges)
 
 total = 0
 
